@@ -13,20 +13,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-# strike
+# expppel
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of strike is to ...
+Prepare cartridge case x3p scans for comparison.
 
 ## Installation
 
-You can install the development version of strike like so:
+You can install the development version of expppel like so:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("jzemmels/strike")
+remotes::install_github("jzemmels/expppel")
 ```
 
 ## Example
@@ -34,5 +34,26 @@ remotes::install_github("jzemmels/strike")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(strike)
+library(expppel)
+data("K013sA1_raw")
+
+attributes(K013sA1_raw)
+
+# install.packages("impressions")
+impressions::x3pPlot(K013sA1_raw)
+
+# 3D rendering of scan surface + mask:
+# install.packages("x3ptools")
+# x3ptools::x3p_image(K013sA1_raw)
 ```
+
+```{r}
+# remove values based on mask
+table(K013sA1_raw$mask) # mask contains mostly black and fewer white pixels
+
+K013sA1_unmasked <- x3p_extract(K013sA1_raw,"#FFFFFFFF") # keep values associated with white mask elements
+impressions::x3pPlot(K013sA1_unmasked,
+                     x3p_trim_na(K013sA1_unmasked))
+```
+
+

@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(strike)
+library(expppel)
 
-test_check("strike")
+test_check("expppel")
